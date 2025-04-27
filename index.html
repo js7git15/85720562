@@ -1,3 +1,4 @@
+<!-- Файл: index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -136,7 +137,7 @@
             <p>Гоша приглашает вас на необычное творческое приключение!</p>
             <div class="date-place">
                 📅 29 апреля | 📍 Место — сюрприз
-                <a href="secret-page.html" class="secret-link" title="Секретная страница"></a>
+                <a href="secret.html" class="secret-link" title="Секретная страница"></a>
             </div>
         </div>
     </header>
@@ -297,4 +298,157 @@
         
         h1 {
             color: #9c27b0;
-            font-size: 2.5
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        
+        p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        
+        .secret-content {
+            background-color: #332a00;
+            border: 2px dashed #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .home-button {
+            background-color: #6d3a8c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .home-button:hover {
+            background-color: #8a4cad;
+            transform: scale(1.05);
+        }
+        
+        .home-button:active {
+            transform: scale(0.98);
+        }
+        
+        .emoji {
+            font-size: 3em;
+            margin: 20px 0;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="secret-container">
+        <span class="emoji">🔐</span>
+        <h1>Секретная страница</h1>
+        
+        <div class="secret-content">
+            <p>Поздравляем! Вы нашли наш секрет!</p>
+            <p>Гоша приготовил для вас специальный бонус:</p>
+            <p><strong>Придите на мастер-класс в фиолетовом и получите подарок!</strong></p>
+        </div>
+        
+        <a href="index.html" class="home-button">Вернуться на главную</a>
+    </div>
+</body>
+</html>
+
+<!-- Файл: 404.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница не найдена | Тайный мастер-класс</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .error-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px;
+            background-color: #1e1e1e;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(154, 27, 27, 0.5);
+        }
+        
+        h1 {
+            color: #e53935;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        
+        .emoji {
+            font-size: 5em;
+            margin: 20px 0;
+            display: block;
+        }
+        
+        .home-button {
+            background-color: #6d3a8c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .home-button:hover {
+            background-color: #8a4cad;
+            transform: scale(1.05);
+        }
+        
+        .home-button:active {
+            transform: scale(0.98);
+        }
+        
+        .error-details {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <span class="emoji">🔍</span>
+        <h1>404</h1>
+        <h2>Страница не найдена</h2>
+        
+        <p>Кажется, мы не можем найти то, что вы ищете.</p>
+        <p>Возможно, страница была перемещена или больше не существует.</p>
+        
+        <a href="index.html" class="home-button">Вернуться на главную</a>
+        
+        <div class="error-details">
+            <p>Если вы считаете, что это ошибка, свяжитесь с Гошей:</p>
+            <p><a href="https://wa.me/79142894588" style="color: #25D366; text-decoration: none;">+7 914 289-45-88</a></p>
+        </div>
+    </div>
+</body>
+</html> Арабуди дабуди дабудай

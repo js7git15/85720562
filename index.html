@@ -41,6 +41,23 @@
             border-radius: 30px;
             margin-top: 15px;
             font-weight: bold;
+            position: relative; /* Для скрытой ссылки */
+        }
+        
+        /* Стили для скрытой ссылки */
+        .secret-link {
+            position: absolute;
+            width: 100px;
+            height: 30px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .date-place:hover .secret-link {
+            opacity: 0.3; /* Едва заметна при наведении */
         }
         
         .main-content {
@@ -51,6 +68,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
+        /* Остальные стили остаются без изменений */
         .guests-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -74,11 +92,6 @@
             margin: 30px 0;
         }
         
-        .emoji {
-            font-size: 1.5em;
-            vertical-align: middle;
-        }
-        
         footer {
             text-align: center;
             margin-top: 40px;
@@ -86,56 +99,10 @@
             font-size: 0.9em;
         }
         
-        .secret-note {
-            background-color: #1a2a3a;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            border-left: 4px solid #3a7ca8;
-        }
-        
         .whatsapp-link {
             color: #25D366;
             font-weight: bold;
             text-decoration: none;
-        }
-        
-        .whatsapp-link:hover {
-            text-decoration: underline;
-        }
-        
-        .go-button {
-            background-color: #6d3a8c;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 1.1em;
-            border-radius: 30px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s;
-        }
-        
-        .go-button:hover {
-            background-color: #8a4cad;
-            transform: scale(1.05);
-        }
-        
-        .go-button:active {
-            transform: scale(0.98);
-        }
-        
-        .disclaimer {
-            font-size: 0.8em;
-            color: #ff5555;
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ff5555;
-            border-radius: 5px;
-        }
-        
-        .hidden {
-            display: none;
         }
     </style>
 </head>
@@ -146,10 +113,13 @@
             <p>Гоша приглашает вас на необычное творческое приключение!</p>
             <div class="date-place">
                 📅 29 апреля | 📍 Место — сюрприз
+                <!-- Скрытая ссылка -->
+                <a href="secret-page.html" class="secret-link" title="Секретная страница"></a>
             </div>
         </div>
     </header>
     
+    <!-- Остальное содержимое без изменений -->
     <div class="container">
         <div class="main-content">
             <h2>Что вас ждет?</h2>
@@ -216,11 +186,6 @@
                 <p>Все детали (включая место проведения и тему мастер-класса) будут раскрыты ближе к событию. Оставайтесь на связи!</p>
                 <p>Рекомендуем надеть одежду, которую не жалко испачкать (на всякий случай).</p>
             </div>
-            
-            <div style="text-align: center;">
-                <button class="go-button" id="goButton">Я иду! 🎉</button>
-                <p id="confirmation" class="hidden">Спасибо! Мы вас ждём!</p>
-            </div>
         </div>
     </div>
     
@@ -232,63 +197,7 @@
                     +7 914 289-45-88
                 </a>
             </p>
-            <div class="disclaimer">
-                Внимание: При нажатии кнопки "Я иду!" система автоматически собирает технические данные (IP-адрес, тип устройства). 
-                Администрация не несёт ответственности за использование этих данных третьими лицами.
-            </div>
         </div>
     </footer>
-
-    <script>
-        document.getElementById('goButton').addEventListener('click', async function() {
-            const button = this;
-            const confirmation = document.getElementById('confirmation');
-            
-            button.disabled = true;
-            button.textContent = 'Отправляем...';
-            
-            try {
-                // Получаем IP пользователя
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipResponse.json();
-                const userIP = ipData.ip;
-                
-                // Собираем данные об устройстве
-                const userAgent = navigator.userAgent;
-                const timestamp = new Date().toISOString();
-                const platform = navigator.platform;
-                const screenWidth = window.screen.width;
-                const screenHeight = window.screen.height;
-                
-                // Формируем сообщение для Telegram
-                const message = `Новый участник мастер-класса!%0A%0A📱 Устройство: ${userAgent}%0A🖥️ Платформа: ${platform}%0A📏 Экран: ${screenWidth}x${screenHeight}%0A🌐 IP: ${userIP}%0A⏰ Время: ${timestamp}`;
-                
-                // Токен бота и chat_id (замените на свои)
-                const botToken = '8195159487:AAE1iJCBSj-Re0mDvrZY_M110Zd1UdonSsU';
-                const chatId = '5764625744';
-                
-                // Отправляем в Telegram
-                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${message}`);
-                
-                // Показываем подтверждение
-                button.textContent = 'Готово!';
-                confirmation.classList.remove('hidden');
-                
-                // Через 3 секунды возвращаем кнопку в исходное состояние
-                setTimeout(() => {
-                    button.disabled = false;
-                    button.textContent = 'Я иду! 🎉';
-                }, 3000);
-                
-            } catch (error) {
-                console.error('Ошибка:', error);
-                button.textContent = 'Ошибка, попробуйте позже';
-                setTimeout(() => {
-                    button.disabled = false;
-                    button.textContent = 'Я иду! 🎉';
-                }, 3000);
-            }
-        });
-    </script>
 </body>
 </html>

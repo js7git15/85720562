@@ -96,6 +96,16 @@
         
         a {
             color: #9d50bb;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .whatsapp-link {
+            color: #25D366; /* Цвет WhatsApp */
+            font-weight: bold;
         }
         
         ul {
@@ -195,7 +205,15 @@
     <footer>
         <div class="container">
             <p>С любовью, ваш Гоша ❤️</p>
-            <p>По всем вопросам: +79142894588</p>
+            <p>По всем вопросам: 
+                <a 
+                    href="https://wa.me/79142894588" 
+                    class="whatsapp-link" 
+                    target="_blank"
+                >
+                    +7 914 289-45-88
+                </a>
+            </p>
         </div>
     </footer>
 </body>

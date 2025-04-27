@@ -41,10 +41,9 @@
             border-radius: 30px;
             margin-top: 15px;
             font-weight: bold;
-            position: relative; /* Для скрытой ссылки */
+            position: relative;
         }
         
-        /* Стили для скрытой ссылки */
         .secret-link {
             position: absolute;
             width: 100px;
@@ -57,7 +56,7 @@
         }
         
         .date-place:hover .secret-link {
-            opacity: 0.3; /* Едва заметна при наведении */
+            opacity: 0.3;
         }
         
         .main-content {
@@ -68,7 +67,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
-        /* Остальные стили остаются без изменений */
         .guests-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -104,6 +102,31 @@
             font-weight: bold;
             text-decoration: none;
         }
+        
+        .whatsapp-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Стили для хлопушки */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .hidden-easter-egg {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 20px;
+            right: 20px;
+            opacity: 0;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -113,13 +136,11 @@
             <p>Гоша приглашает вас на необычное творческое приключение!</p>
             <div class="date-place">
                 📅 29 апреля | 📍 Место — сюрприз
-                <!-- Скрытая ссылка -->
                 <a href="secret-page.html" class="secret-link" title="Секретная страница"></a>
             </div>
         </div>
     </header>
     
-    <!-- Остальное содержимое без изменений -->
     <div class="container">
         <div class="main-content">
             <h2>Что вас ждет?</h2>
@@ -199,5 +220,81 @@
             </p>
         </div>
     </footer>
+
+    <!-- Область для активации пасхалки -->
+    <div class="hidden-easter-egg" id="easterEgg"></div>
+
+    <script>
+        // Функция для создания конфетти
+        function createConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            const confettiCount = 100;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = -10 + 'px';
+                document.body.appendChild(confetti);
+                
+                const animationDuration = Math.random() * 3 + 2;
+                confetti.style.transition = `top ${animationDuration}s linear, transform ${animationDuration}s ease-out`;
+                
+                setTimeout(() => {
+                    confetti.style.top = window.innerHeight + 'px';
+                    confetti.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                }, 10);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, animationDuration * 1000);
+            }
+            
+            // Звук хлопушки
+            const popSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-with-delay-2354.mp3');
+            popSound.play().catch(e => console.log("Автовоспроизведение звука заблокировано"));
+        }
+
+        // Активация пасхалки
+        document.getElementById('easterEgg').addEventListener('click', function() {
+            createConfetti();
+            
+            setTimeout(() => {
+                alert('🎉 Сюрприз! Вы нашли пасхалку! 🎉');
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
+
+<!-- Файл: secret.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Секретная страница | Тайный мастер-класс</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .secret-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px;
+            background-color: #1e1e1e;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(106, 27, 154, 0.5);
+        }
+        
+        h1 {
+            color: #9c27b0;
+            font-size: 2.5
